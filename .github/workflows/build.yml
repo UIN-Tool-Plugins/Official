@@ -33,17 +33,28 @@ jobs:
       - name: Install jq
         run: sudo apt-get install -y jq
 
-      - name: Build all plugins
+      - name: Build changed plugins
         run: |
           mkdir -p build
+
+          # 增量: 本次推送改动的插件
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- plugins/ 2>/dev/null | cut -d'/' -f2 | sort -u)
+
+          # 无改动则构建全部
+          if [ -z "$CHANGED" ]; then
+            CHANGED=$(ls -d plugins/*/ 2>/dev/null | xargs -I{} basename {})
+          fi
+
+          echo "📦 Plugins to build: $CHANGED"
+
           SUCCESS=0
           FAIL=0
 
-          for plugin_dir in plugins/*/; do
-            [ -d "$plugin_dir" ] || continue
-            plugin_id=$(basename "$plugin_dir")
+          for plugin_id in $CHANGED; do
+            PLUGIN_DIR="plugins/$plugin_id"
+            [ -d "$PLUGIN_DIR" ] || continue
 
-            if bash scripts/build-plugin.sh "$plugin_dir" "build/$plugin_id.tpk"; then
+            if bash scripts/build-plugin.sh "$PLUGIN_DIR" "build/$plugin_id.tpk"; then
               SUCCESS=$((SUCCESS + 1))
             else
               FAIL=$((FAIL + 1))
@@ -72,7 +83,7 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
 
-          # 复制构建产物和元数据
+          # 复制构建产物和元数据（只更新有新 .tpk 的插件）
           for tpk in /tmp/build_backup/*.tpk; do
             [ -f "$tpk" ] || continue
             PLUGIN_ID=$(basename "$tpk" .tpk)
