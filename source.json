@@ -3,7 +3,7 @@
   "name": "Official",
   "description": "",
   "maintainer": "",
-  "lastUpdated": "2026-08-30T09:10:13Z",
+  "lastUpdated": "2026-08-30T09:32:32Z",
   "plugins": [
     {
       "pluginId": "uin.official.calculator",
@@ -16,7 +16,21 @@
       "size": 4452,
       "tpkPath": "plugins/uin.official.calculator/uin.official.calculator.tpk",
       "iconPath": "plugins/uin.official.calculator/icon.png",
-      "lastUpdated": "2026-08-30T09:10:13Z"
+      "lastUpdated": "2026-08-30T09:32:32Z"
+    }
+    ,
+    {
+      "pluginId": "uin.official.filemanager",
+      "name": "文件管理器",
+      "version": 1,
+      "versionName": "1.0.0",
+      "author": "UIN",
+      "description": "Native 插件示例，使用 Java 编写的文件管理器",
+      "category": "工具",
+      "size": 2301,
+      "tpkPath": "plugins/uin.official.filemanager/uin.official.filemanager.tpk",
+      "iconPath": "plugins/uin.official.filemanager/icon.png",
+      "lastUpdated": "2026-08-30T09:32:32Z"
     }
     ,
     {
@@ -30,7 +44,7 @@
       "size": 1554,
       "tpkPath": "plugins/uin.official.hello/uin.official.hello.tpk",
       "iconPath": "plugins/uin.official.hello/icon.png",
-      "lastUpdated": "2026-08-30T09:10:13Z"
+      "lastUpdated": "2026-08-30T09:32:32Z"
     }
     ,
     {
@@ -44,7 +58,7 @@
       "size": 5584,
       "tpkPath": "plugins/uin.official.sysinfo/uin.official.sysinfo.tpk",
       "iconPath": "plugins/uin.official.sysinfo/icon.png",
-      "lastUpdated": "2026-08-30T09:10:13Z"
+      "lastUpdated": "2026-08-30T09:32:32Z"
     }
     ,
     {
@@ -58,7 +72,7 @@
       "size": 1472,
       "tpkPath": "plugins/uin.official.terminal/uin.official.terminal.tpk",
       "iconPath": "plugins/uin.official.terminal/icon.png",
-      "lastUpdated": "2026-08-30T09:10:13Z"
+      "lastUpdated": "2026-08-30T09:32:32Z"
     }
   ]
 }
