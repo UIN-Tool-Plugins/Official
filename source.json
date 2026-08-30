@@ -3,7 +3,62 @@
   "name": "Official",
   "description": "",
   "maintainer": "",
-  "lastUpdated": "2026-08-30T08:58:35Z",
+  "lastUpdated": "2026-08-30T09:10:13Z",
   "plugins": [
+    {
+      "pluginId": "uin.official.calculator",
+      "name": "计算器",
+      "version": 1,
+      "versionName": "1.0.0",
+      "author": "UIN",
+      "description": "带 Python 后端的计算器插件",
+      "category": "工具",
+      "size": 4452,
+      "tpkPath": "plugins/uin.official.calculator/uin.official.calculator.tpk",
+      "iconPath": "plugins/uin.official.calculator/icon.png",
+      "lastUpdated": "2026-08-30T09:10:13Z"
+    }
+    ,
+    {
+      "pluginId": "uin.official.hello",
+      "name": "Hello World",
+      "version": 1,
+      "versionName": "1.0.0",
+      "author": "UIN",
+      "description": "一个简单的示例 Web 插件",
+      "category": "示例",
+      "size": 1554,
+      "tpkPath": "plugins/uin.official.hello/uin.official.hello.tpk",
+      "iconPath": "plugins/uin.official.hello/icon.png",
+      "lastUpdated": "2026-08-30T09:10:13Z"
+    }
+    ,
+    {
+      "pluginId": "uin.official.sysinfo",
+      "name": "系统信息 (C)",
+      "version": 1,
+      "versionName": "1.0.0",
+      "author": "UIN",
+      "description": "C 语言后端 + CUI 插件示例，编译 C 源码为二进制程序作为后端",
+      "category": "工具",
+      "size": 5584,
+      "tpkPath": "plugins/uin.official.sysinfo/uin.official.sysinfo.tpk",
+      "iconPath": "plugins/uin.official.sysinfo/icon.png",
+      "lastUpdated": "2026-08-30T09:10:13Z"
+    }
+    ,
+    {
+      "pluginId": "uin.official.terminal",
+      "name": "终端监控",
+      "version": 1,
+      "versionName": "1.0.0",
+      "author": "UIN",
+      "description": "CUI 终端插件示例，显示系统实时信息",
+      "category": "工具",
+      "size": 1472,
+      "tpkPath": "plugins/uin.official.terminal/uin.official.terminal.tpk",
+      "iconPath": "plugins/uin.official.terminal/icon.png",
+      "lastUpdated": "2026-08-30T09:10:13Z"
+    }
   ]
 }
