@@ -33,39 +33,17 @@ jobs:
       - name: Install jq
         run: sudo apt-get install -y jq
 
-      - name: Build changed plugins
+      - name: Build all plugins
         run: |
           mkdir -p build
-
-          # 增量: 本次推送改动的插件
-          CHANGED=$(git diff --name-only HEAD~1 HEAD -- plugins/ 2>/dev/null | cut -d'/' -f2 | sort -u)
-
-          # 检查 dist 分支是否缺少产物，缺少则加入构建队列
-          git fetch origin dist:refs/remotes/origin/dist 2>/dev/null || true
-          for plugin_dir in plugins/*/; do
-            [ -d "$plugin_dir" ] || continue
-            plugin_id=$(basename "$plugin_dir")
-            if ! git ls-tree origin/dist "plugins/$plugin_id/" 2>/dev/null | grep -q ".tpk"; then
-              CHANGED=$(echo -e "$CHANGED\n$plugin_id" | sort -u | grep -v '^$')
-            fi
-          done
-
-          # 无变更则跳过
-          if [ -z "$CHANGED" ]; then
-            echo "✅ No plugins to build"
-            exit 0
-          fi
-
-          echo "📦 Plugins to build: $CHANGED"
-
           SUCCESS=0
           FAIL=0
 
-          for plugin_id in $CHANGED; do
-            PLUGIN_DIR="plugins/$plugin_id"
-            [ -d "$PLUGIN_DIR" ] || continue
+          for plugin_dir in plugins/*/; do
+            [ -d "$plugin_dir" ] || continue
+            plugin_id=$(basename "$plugin_dir")
 
-            if bash scripts/build-plugin.sh "$PLUGIN_DIR" "build/$plugin_id.tpk"; then
+            if bash scripts/build-plugin.sh "$plugin_dir" "build/$plugin_id.tpk"; then
               SUCCESS=$((SUCCESS + 1))
             else
               FAIL=$((FAIL + 1))
@@ -103,11 +81,14 @@ jobs:
             mkdir -p "$DIST_DIR"
             cp "$tpk" "$DIST_DIR/"
 
-            # 复制 plugin.json（generate-index.sh 需要）
-            PLUGIN_JSON="$GITHUB_WORKSPACE/plugins/$PLUGIN_ID/plugin.json"
-            if [ -f "$PLUGIN_JSON" ]; then
-              cp "$PLUGIN_JSON" "$DIST_DIR/"
-              jq -r '.version' "$PLUGIN_JSON" > "$DIST_DIR/.version"
+            # 复制 plugin.json、icon.png（generate-index.sh 需要）
+            PLUGIN_DIR="$GITHUB_WORKSPACE/plugins/$PLUGIN_ID"
+            if [ -f "$PLUGIN_DIR/plugin.json" ]; then
+              cp "$PLUGIN_DIR/plugin.json" "$DIST_DIR/"
+              jq -r '.version' "$PLUGIN_DIR/plugin.json" > "$DIST_DIR/.version"
+            fi
+            if [ -f "$PLUGIN_DIR/icon.png" ]; then
+              cp "$PLUGIN_DIR/icon.png" "$DIST_DIR/"
             fi
             date -u +%Y-%m-%dT%H:%M:%SZ > "$DIST_DIR/.built"
           done
