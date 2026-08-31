@@ -26,7 +26,15 @@ public class FileManagerPlugin implements com.UIN.Tool.plugin.PluginInterface {
         title.setPadding(0, 0, 0, 24);
         this.container.addView(title);
 
-        File pluginDir = new File(context.getFilesDir(), "plugins");
+        File pluginDir = new File("/storage/emulated/0/UIN_Tool/plugins");
+        if (!pluginDir.exists()) pluginDir.mkdirs();
+
+        TextView pathInfo = new TextView(context);
+        pathInfo.setText("路径: " + pluginDir.getAbsolutePath());
+        pathInfo.setTextSize(12);
+        pathInfo.setPadding(0, 0, 0, 16);
+        this.container.addView(pathInfo);
+
         listFiles(pluginDir, this.container, 0);
 
         return this.container;
