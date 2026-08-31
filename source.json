@@ -3,7 +3,7 @@
   "name": "Official",
   "description": "",
   "maintainer": "",
-  "lastUpdated": "2026-08-30T09:34:30Z",
+  "lastUpdated": "2026-08-31T02:26:01Z",
   "plugins": [
     {
       "pluginId": "uin.official.calculator",
@@ -13,10 +13,10 @@
       "author": "UIN",
       "description": "带 Python 后端的计算器插件",
       "category": "工具",
-      "size": 4452,
+      "size": 4431,
       "tpkPath": "plugins/uin.official.calculator/uin.official.calculator.tpk",
       "iconPath": "plugins/uin.official.calculator/icon.png",
-      "lastUpdated": "2026-08-30T09:34:30Z"
+      "lastUpdated": "2026-08-31T02:26:01Z"
     }
     ,
     {
@@ -27,10 +27,10 @@
       "author": "UIN",
       "description": "Native 插件示例，使用 Java 编写的文件管理器",
       "category": "工具",
-      "size": 2301,
+      "size": 2468,
       "tpkPath": "plugins/uin.official.filemanager/uin.official.filemanager.tpk",
       "iconPath": "plugins/uin.official.filemanager/icon.png",
-      "lastUpdated": "2026-08-30T09:34:30Z"
+      "lastUpdated": "2026-08-31T02:26:02Z"
     }
     ,
     {
@@ -44,7 +44,7 @@
       "size": 1554,
       "tpkPath": "plugins/uin.official.hello/uin.official.hello.tpk",
       "iconPath": "plugins/uin.official.hello/icon.png",
-      "lastUpdated": "2026-08-30T09:34:30Z"
+      "lastUpdated": "2026-08-31T02:26:02Z"
     }
     ,
     {
@@ -58,7 +58,7 @@
       "size": 5584,
       "tpkPath": "plugins/uin.official.sysinfo/uin.official.sysinfo.tpk",
       "iconPath": "plugins/uin.official.sysinfo/icon.png",
-      "lastUpdated": "2026-08-30T09:34:30Z"
+      "lastUpdated": "2026-08-31T02:26:02Z"
     }
     ,
     {
@@ -72,7 +72,7 @@
       "size": 1472,
       "tpkPath": "plugins/uin.official.terminal/uin.official.terminal.tpk",
       "iconPath": "plugins/uin.official.terminal/icon.png",
-      "lastUpdated": "2026-08-30T09:34:30Z"
+      "lastUpdated": "2026-08-31T02:26:02Z"
     }
   ]
 }
