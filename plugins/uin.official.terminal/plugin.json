@@ -1,7 +1,7 @@
 {
   "pluginId": "uin.official.terminal",
   "name": "终端监控",
-  "version": 1,
+  "version": 2,
   "versionName": "1.0.0",
   "author": "UIN",
   "description": "CUI 终端插件示例，显示系统实时信息",

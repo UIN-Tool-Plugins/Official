@@ -1,78 +1,9 @@
 {
   "sourceId": "official",
-  "name": "Official",
-  "description": "",
-  "maintainer": "",
-  "lastUpdated": "2026-08-31T03:47:39Z",
-  "plugins": [
-    {
-      "pluginId": "uin.official.calculator",
-      "name": "计算器",
-      "version": 1,
-      "versionName": "1.0.0",
-      "author": "UIN",
-      "description": "带 Python 后端的计算器插件",
-      "category": "工具",
-      "size": 4431,
-      "tpkPath": "plugins/uin.official.calculator/uin.official.calculator.tpk",
-      "iconPath": "plugins/uin.official.calculator/icon.png",
-      "lastUpdated": "2026-08-31T03:47:39Z"
-    }
-    ,
-    {
-      "pluginId": "uin.official.filemanager",
-      "name": "文件管理器",
-      "version": 1,
-      "versionName": "1.0.0",
-      "author": "UIN",
-      "description": "Native 插件示例，使用 Java 编写的文件管理器",
-      "category": "工具",
-      "size": 2468,
-      "tpkPath": "plugins/uin.official.filemanager/uin.official.filemanager.tpk",
-      "iconPath": "plugins/uin.official.filemanager/icon.png",
-      "lastUpdated": "2026-08-31T03:47:39Z"
-    }
-    ,
-    {
-      "pluginId": "uin.official.hello",
-      "name": "Hello World",
-      "version": 1,
-      "versionName": "1.0.0",
-      "author": "UIN",
-      "description": "一个简单的示例 Web 插件",
-      "category": "示例",
-      "size": 1554,
-      "tpkPath": "plugins/uin.official.hello/uin.official.hello.tpk",
-      "iconPath": "plugins/uin.official.hello/icon.png",
-      "lastUpdated": "2026-08-31T03:47:39Z"
-    }
-    ,
-    {
-      "pluginId": "uin.official.sysinfo",
-      "name": "系统信息 (C)",
-      "version": 1,
-      "versionName": "1.0.0",
-      "author": "UIN",
-      "description": "C 语言后端 + CUI 插件示例，编译 C 源码为二进制程序作为后端",
-      "category": "工具",
-      "size": 5584,
-      "tpkPath": "plugins/uin.official.sysinfo/uin.official.sysinfo.tpk",
-      "iconPath": "plugins/uin.official.sysinfo/icon.png",
-      "lastUpdated": "2026-08-31T03:47:39Z"
-    }
-    ,
-    {
-      "pluginId": "uin.official.terminal",
-      "name": "终端监控",
-      "version": 1,
-      "versionName": "1.0.0",
-      "author": "UIN",
-      "description": "CUI 终端插件示例，显示系统实时信息",
-      "category": "工具",
-      "size": 1472,
-      "tpkPath": "plugins/uin.official.terminal/uin.official.terminal.tpk",
-      "iconPath": "plugins/uin.official.terminal/icon.png",
-      "lastUpdated": "2026-08-31T03:47:39Z"
-    }
-  ]
+  "name": "官方源",
+  "description": "UIN Tool 官方维护的插件仓库",
+  "maintainer": "UIN-Tool-Plugins",
+  "lastUpdated": "2026-11-22T03:40:35Z",
+  "plugins": [],
+  "repositoryUrl": "https://github.com/UIN-Tool-Plugins/Official"
 }
