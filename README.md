@@ -12,7 +12,7 @@ UIN Tool 官方插件仓库。推送 `main` 后由 GitHub Actions 构建、签�
 | `uin.official.terminal` | 空 | cui | — | CUI 终端插件（shell 脚本） |
 | `uin.official.sysinfo` | other | cui | C | C 语言后端 + CUI 插件 |
 
-> 所有示例插件默认隐藏（`visible` 内容为 `1`），仍会构建并发布到 `dist`，但不会出现在插件源列表中。把 `visible` 改成 `0` 或删掉即可显示。
+> 所有示例插件默认显示（`visible` 内容为 `1`），会构建并发布到 `dist`，同时出现在插件源列表中。把 `visible` 改成 `0` 即可隐藏：仍然构建发布，但不会写进 `source.json`。
 
 ## 添加到 UIN Tool
 
@@ -44,7 +44,7 @@ https://github.com/UIN-Tool-Plugins/Official
 ├── plugins/
 │   └── <pluginId>/
 │       ├── type                   构建方式（空 / native / other）
-│       ├── visible                1 = 不在源列表显示
+│       ├── visible                1 = 在源列表显示，0 = 隐藏
 │       ├── plugin.json            插件元数据
 │       ├── icon.png               PNG 图标
 │       └── ...                    web/、scripts/、src/ 等
@@ -151,8 +151,8 @@ DIST_PUSH=0 bash scripts/deploy-dist.sh /tmp/dist-preview build source.json
 
 | 内容 | 效果 |
 |------|------|
-| 无文件 / `0` / `false` | 显示在插件源列表 |
-| `1` / `true` | 构建发布，但不写入 `source.json` |
+| 无文件 / `1` / `true` | 显示在插件源列表 |
+| `0` / `false` | 构建发布，但不写入 `source.json` |
 
 ### build.sh（type=other）
 
@@ -207,7 +207,7 @@ dist/
     ├── <pluginId>.tpk
     ├── plugin.json        生效版本的元数据
     ├── icon.png
-    ├── visible            隐藏标记（可选）
+    ├── visible            显示标记（可选，0 = 隐藏）
     ├── .version
     ├── .sha256
     ├── .signer            签名证书 SHA-256
