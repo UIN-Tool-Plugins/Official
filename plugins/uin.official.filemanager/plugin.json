@@ -1,7 +1,7 @@
 {
   "pluginId": "uin.official.filemanager",
   "name": "文件管理器",
-  "version": 4,
+  "version": 5,
   "versionName": "1.0.0",
   "author": "UIN",
   "description": "Native 插件示例，使用 Java 编写的文件管理器",
