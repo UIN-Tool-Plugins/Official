@@ -1,7 +1,7 @@
 {
   "pluginId": "uin.official.hello",
   "name": "Hello World",
-  "version": 2,
+  "version": 3,
   "versionName": "1.0.0",
   "author": "UIN",
   "description": "一个简单的示例 Web 插件",
