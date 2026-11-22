@@ -1,7 +1,7 @@
 {
   "pluginId": "uin.official.calculator",
   "name": "计算器",
-  "version": 3,
+  "version": 4,
   "versionName": "1.0.0",
   "author": "UIN",
   "description": "带 Python 后端的计算器插件",
