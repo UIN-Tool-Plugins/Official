@@ -114,7 +114,7 @@ CI 不提供 `--force`，避免误操作。
 
 ## 本地构建
 
-需要 JDK 17、Android SDK platform + build-tools、Python 3、bash。原生插件需要 `d8`；C 示例需要 Android NDK（不装也能用主机 gcc 做逻辑测试，但产物不能上真机）。
+需要 JDK 17、Android SDK platform + build-tools、Python 3、bash。原生插件需要 `d8`；C 示例需要 aarch64 静态交叉编译器（Ubuntu/Debian 安装 `gcc-aarch64-linux-gnu`，在 aarch64 Linux 上可直接用本机 gcc）。
 
 ```bash
 # 全部插件（没有 dist/ 时版本从 1 开始）
@@ -167,9 +167,9 @@ build.sh <暂存目录> <输出.tpk>
 - 为了兼容旧脚本，如果仍然生成了 `$2`，会直接使用它并做同样的校验。
 - 打包时会自动排除 `type`、`visible`、`build.sh`、`src/`、`libs/`、`data/`、`*.tpk`、`*.class` 等构建输入。
 
-C 示例的 `build.sh` 会优先使用 `ANDROID_NDK_HOME` 里的 `aarch64-linux-android*-clang`。CI 设置 `REQUIRE_ANDROID_BINARY=1`，没有 NDK 直接失败，避免把 x86_64 主机二进制发布给 Android。
+C 示例的后端会运行在插件实际使用的环境里：内置 proot 是 Debian (glibc)，实体 Termux 是 Android (bionic)。同时兼容两者的形态是**静态链接的 Linux aarch64 可执行文件**，所以 `build.sh` 优先使用 `aarch64-linux-gnu-gcc -static`（在 aarch64 Linux 上直接用本机 `gcc -static`），并用 `file` 检查产物必须是 `ARM aarch64` 且 `statically linked`。Android NDK 产出的是 bionic 动态可执行文件，在 Debian 容器里缺少 `/system/bin/linker64`，不能用作后端。
 
-宿主解压 TPK 时不会保留 Unix 可执行位，所以 C 示例用 `scripts/start.sh` 在启动前补一次 `chmod +x` 再 `exec`，`backendStartCommand` 写 `sh scripts/start.sh`。
+共享存储通常以 `noexec` 挂载，宿主解压 TPK 也不会保留可执行位。C 示例的 `scripts/start.sh` 会先把二进制复制到可执行目录再 `exec`：依次尝试 `$TMPDIR`、`/tmp`、`$HOME`（都位于 `/data`，允许执行），适配内置 proot 与实体 Termux。`backendStartCommand` 写 `sh scripts/start.sh`。
 
 ### .tpkignore
 
@@ -216,7 +216,7 @@ dist/
 
 `source.json` 中每个插件包含宿主需要的字段：
 
-`pluginId`、`name`、`version`、`versionName`、`author`、`description`、`category`、`uiType`、`size`、`tpkPath`、`iconPath`、`lastUpdate`、`updateLog`、`repositoryUrl`，另外附带 `sha256`、`signerSha256`、`signed`、`minHostVersion` 供镜像和人工校验。
+`pluginId`、`name`、`version`、`versionName`、`author`、`description`、`category`、`uiType`、`size`、`tpkPath`、`iconPath`、`iconSha256`、`lastUpdate`、`updateLog`、`repositoryUrl`，另外附带 `sha256`、`signerSha256`、`signed`、`minHostVersion` 供镜像和人工校验。`iconSha256` 是 `icon.png` 的内容摘要，客户端下载图标后按它校验，不一致就不显示也不写缓存。
 
 ## 常见问题
 
@@ -234,7 +234,7 @@ dist/
 
 **C 示例产物的架构不对**
 
-CI 必须设置 `ANDROID_NDK_HOME`。本地用主机 gcc 只用于测试逻辑，不要发布。
+CI 会自动安装 `gcc-aarch64-linux-gnu`。本地需要 aarch64 交叉编译器，或直接在 aarch64 Linux 上构建。产物必须是静态链接，否则在 proot 容器里找不到动态解释器。
 
 **删除插件后 dist 还有旧包**
 
